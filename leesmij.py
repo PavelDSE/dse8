@@ -12,7 +12,7 @@ print "is het Julie gelukt: Nog niet"
 print "is het Joost gelukt: Nog niet"
 print "is het Eva gelukt: Nog niet"
 print "is het Gertjan gelukt: Nog niet"
-print "is het Rogier gelukt: Nog niet"
+print "is het Rogier gelukt: Ja!"
 print "is het Frank gelukt: Nog niet"
 print "is het Pavel gelukt: Nog niet"
 
