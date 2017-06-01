@@ -5,4 +5,4 @@ Spyder Editor
 This is a temporary script file.
 """
 
-print "hoi hoi world"
+print "laterz world"
