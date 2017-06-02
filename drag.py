@@ -69,7 +69,12 @@ clean = np.array([["Source","CD0","%of total"],
                    ["Wing",CD0_wing,100*CD0_wing/CD0_clean],
                    ["Clean",CD0_clean,100]
 ])
-
-print drag_total_cruise
-print drag_total_sideslip45
-print clean
+drag=np.ones((13,1))
+#drag[[1,2,3,4,5],[1,2]]=
+dcruise = np.array(drag_total_cruise[1:,1], dtype=float)
+drag[0:5,0] = dcruise
+dsideslip45 = np.array(drag_total_sideslip45[1:,1], dtype=float)
+drag[5:10,0] = dsideslip45
+dclean = np.array(clean[1:,1], dtype=float)
+drag[10:14,0] = dclean
+print drag
