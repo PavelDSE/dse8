@@ -100,12 +100,18 @@ if min(Stress_r_list[3]) < min(min(Stress_r_list[1]),min(Stress_r_list[2]),min(S
     cornermin = 3
 
 ##Circle
-n_circle = 25  #Op hoe veel punten checkt hij de stress in de circle doorsnede?
-theta=[]
+n_circle = 4  #Op hoe veel punten checkt hij de stress in de circle doorsnede?
+theta=[]  # Vanaf de x-as clockwise
+xc =[]
+yc =[]
 for i in range(n_circle):
     deltatheta = 2.*np.pi/n_circle
     thetavalue = i*deltatheta
     theta.append(thetavalue)
+    xc.append(Spar_r*np.cos(thetavalue))
+    yc.append(Spar_r*np.sin(thetavalue))
+
+
     
 #Stress-maxc = 
 
