@@ -21,6 +21,7 @@ rho = 0.9046                                       #[kg/m3]    Assumption ISA 10
 rho_0 = 1.225                                      #[kg/m3]    Assumption ISA Sea-Level. Frank 10-5
 a_0 = 343.                                           #[m/s]     Ground level speed of sound. Rens 16-5
 a_0ft = 1125.                                        #[ft/s]   #speed of sound in amerika yolo units. Rens 16-5
+visc_0 = 1.789 * 10**-5                             #?          dynamic viscosity at sea level
 
 ### Requirements
 V_stall_max = 25.*0.514444444                      #[m/s]      Cruise speed - requirement. Frank 10-5
