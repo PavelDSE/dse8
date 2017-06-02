@@ -48,7 +48,7 @@ CD0_LGstruts_sideslip45 = LGstruts*CD_strut_sideslip45*LGs_sideslip45_S/Wing_S
 
 #Total CD0
 CD0_clean = CD0_pilot + CD0_wing
-CD0_total_cruise = CD0_pilot + CD0_wing + CD0_LGstruts_cruise + CD0_LG     #change _cruise to _sideslip45 to take this flight condition into account
+CD0_total_cruise = CD0_pilot + CD0_wing + CD0_LGstruts_cruise + CD0_LG     
 CD0_total_sideslip45 = CD0_pilot + CD0_wing + CD0_LGstruts_sideslip45 + CD0_LG  
 drag_total_cruise = np.array([["Source","CD0","%of total"],
                    ["Pilot",CD0_pilot,100*CD0_pilot/CD0_total_cruise],
@@ -69,12 +69,13 @@ clean = np.array([["Source","CD0","%of total"],
                    ["Wing",CD0_wing,100*CD0_wing/CD0_clean],
                    ["Clean",CD0_clean,100]
 ])
-drag=np.ones((13,1))
+drag=np.zeros((5,3)) #this is going to be the float array to include all drag configurations,
+#currently: column 0 clean, column 1 cruise, column 2 sideslip at 45deg
 #drag[[1,2,3,4,5],[1,2]]=
-dcruise = np.array(drag_total_cruise[1:,1], dtype=float)
-drag[0:5,0] = dcruise
-dsideslip45 = np.array(drag_total_sideslip45[1:,1], dtype=float)
-drag[5:10,0] = dsideslip45
 dclean = np.array(clean[1:,1], dtype=float)
-drag[10:14,0] = dclean
+drag[0:3,0] = dclean
+dcruise = np.array(drag_total_cruise[1:,1], dtype=float)
+drag[0:5,1] = dcruise
+dsideslip45 = np.array(drag_total_sideslip45[1:,1], dtype=float)
+drag[0:5,2] = dsideslip45
 print drag
