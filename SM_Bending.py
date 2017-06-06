@@ -64,8 +64,9 @@ I_xyc = 0.
 
 ########################### BENDING LOADS ####################
 
-M_x = 5000*ones #[N] Lift (positieve Mx is lift) - UIT MIJN DUIM GEZOGEN
+M_x = 5000*ones #[N] Lift (positieve Mx is lift) - UIT MIJN DUIM GEZOGEN - Let op, trek weight er nog vanaf
 M_y = 1000*ones #[N] Drag (positieve My is drag) - UIT MIJN DUIM GEZOGEN
+M_xnolift = -1000*ones #[N] Weight - UIT MIJN DUIM GEZOGEN
 
 ########################## BENDING STRESS #######################
 
@@ -145,12 +146,20 @@ Spar_dx = Wing_b/2./(n_sparpoints)
 ddu = M_y/(Spar_E*I_yyr) ### Ik heb de min weggehaald zodat de deflectie positief is. Ik weet niet of dit hoort.
 du = cumtrapz(ddu, dx = Spar_dx)
 u = np.trapz(du, dx = Spar_dx) # Due to drag
+if abs(u)>u_max:
+    print "WARNING: u>u_max: deflection due to drag exceeds limit"
 
 ddv = -M_x/(Spar_E*I_xxr)
 dv = cumtrapz(ddv, dx = Spar_dx)
 v = np.trapz(dv, dx = Spar_dx) # Due to lift --> 
+if abs(v)>v_max:
+    print "WARNING: v>v_max: deflection due to lift exceeds limit"
 
-
+ddv = -M_xnolift/(Spar_E*I_xxr)
+dv = cumtrapz(ddv, dx = Spar_dx)
+v = np.trapz(dv, dx = Spar_dx) # Due to lift --> 
+if abs(v)>v_maxnolift:
+    print "WARNING: v>v_maxnolift: deflection due to weight exceeds limit"
 
 
 

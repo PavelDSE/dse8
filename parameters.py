@@ -164,3 +164,4 @@ noise = 82.800                                    #[dB]       Noise at 200ft, ui
 #Structures
 u_max = 0.5                                        #[m] Spar deflection due to drag
 v_max = 0.5                                        #[m] Spar deflection due to lift
+v_maxnolift = 0.3                                  #[m] Spar deflection due to weight
