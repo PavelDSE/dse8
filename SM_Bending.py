@@ -1,10 +1,15 @@
 import numpy as np
+from parameters import *
+from scipy.integrate import *
 
+Spar_E = 71.7*10**9 ## Aluminium 7075 t6
+
+################################# DIMENSIONS ###########################
 #Rectangular spar dimensions (buitenmaten!)
 Spar_w_root = 0.2       #[m] Spar width root
-Spar_w_tip = 0.1        #[m] Spar width tip
+Spar_w_tip = 0.2        #[m] Spar width tip
 Spar_h_root = 0.15      #[m] Spar height root
-Spar_h_tip = 0.1        #[m] Spar height tip
+Spar_h_tip = 0.15        #[m] Spar height tip
 Spar_htc = 2.*10**(-3)  #[m] Spar height thickness constant
 Spar_wtc = 2.*10**(-3)  #[m] Spar width thickness constant
 
@@ -57,8 +62,12 @@ I_xxc = np.pi/4.*(Spar_r**4-(Spar_r-Spar_t)**4)
 I_yyc = I_xxc
 I_xyc = 0.
 
+########################### BENDING LOADS ####################
+
 M_x = 5000*ones #[N] Lift (positieve Mx is lift) - UIT MIJN DUIM GEZOGEN
 M_y = 1000*ones #[N] Drag (positieve My is drag) - UIT MIJN DUIM GEZOGEN
+
+########################## BENDING STRESS #######################
 
 ##Rectangle
 Stress_r_list = []
@@ -129,9 +138,17 @@ Stress_c_max = [max(Stress_c_maxlistvalue), Stress_c_maxlistindex[np.argmax(Stre
 Stress_c_min = [min(Stress_c_minlistvalue), Stress_c_minlistindex[np.argmin(Stress_c_minlistvalue)], np.argmin(Stress_c_minlistvalue)] #[Stress, point along span, point along crossection]
     
 
-    
-#Stress-maxc = 
+################# BENDING DEFLECTION #########################
 
+##Rectangle
+Spar_dx = Wing_b/2./(n_sparpoints)
+ddu = M_y/(Spar_E*I_yyr) ### Ik heb de min weggehaald zodat de deflectie positief is. Ik weet niet of dit hoort.
+du = cumtrapz(ddu, dx = Spar_dx)
+u = np.trapz(du, dx = Spar_dx) # Due to drag
+
+ddv = -M_x/(Spar_E*I_xxr)
+dv = cumtrapz(ddv, dx = Spar_dx)
+v = np.trapz(dv, dx = Spar_dx) # Due to lift --> 
 
 
 

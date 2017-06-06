@@ -158,3 +158,9 @@ Batcap_4min_climb = 0.1923                        #[kWh]        Battery capacity
 #Einde waardes vanuit P&P
 
 noise = 82.800                                    #[dB]       Noise at 200ft, uit noise2.py. Rens 17-5
+
+
+
+#Structures
+u_max = 0.5                                        #[m] Spar deflection due to drag
+v_max = 0.5                                        #[m] Spar deflection due to lift
