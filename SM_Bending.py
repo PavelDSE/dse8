@@ -80,6 +80,7 @@ for i in range(4):
     Stress_r_list.append(Stress_r)
     
 Stress_r_max = max(max(Stress_r_list[0]),max(Stress_r_list[1]),max(Stress_r_list[2]),max(Stress_r_list[3]))
+Stress_r_min = min(min(Stress_r_list[0]),min(Stress_r_list[1]),min(Stress_r_list[2]),min(Stress_r_list[3]))
 #Which corner has the highest stress?
 if max(Stress_r_list[0]) > max(max(Stress_r_list[1]),max(Stress_r_list[2]),max(Stress_r_list[3])):
     cornermax = 0
@@ -104,13 +105,29 @@ n_circle = 4  #Op hoe veel punten checkt hij de stress in de circle doorsnede?
 theta=[]  # Vanaf de x-as clockwise
 xc =[]
 yc =[]
+Stress_c_list = []
+Stress_c_maxlistvalue = []
+Stress_c_maxlistindex = []
+Stress_c_minlistvalue = []
+Stress_c_minlistindex = []
 for i in range(n_circle):
     deltatheta = 2.*np.pi/n_circle
     thetavalue = i*deltatheta
     theta.append(thetavalue)
-    xc.append(Spar_r*np.cos(thetavalue))
-    yc.append(Spar_r*np.sin(thetavalue))
-
+    xc_value = (Spar_r*np.cos(thetavalue))
+    xc.append(xc_value)
+    yc_value = Spar_r*np.sin(thetavalue)
+    yc.append(yc_value)
+    Stress_c = ((M_y*I_xxc-M_x*I_xyc)/(I_xxc*I_yyc-I_xyc**2))*xc_value + ((M_x*I_yyc-M_y*I_xyc)/(I_xxc*I_yyc-I_xyc**2))*yc_value
+    Stress_c_list.append(Stress_c)
+    Stress_c_maxlistvalue.append(max(Stress_c))
+    Stress_c_maxlistindex.append(np.argmax(Stress_c))
+    Stress_c_minlistvalue.append(min(Stress_c))
+    Stress_c_minlistindex.append(np.argmin(Stress_c))
+Stress_c_max = [max(Stress_c_maxlistvalue), Stress_c_maxlistindex[np.argmax(Stress_c_maxlistvalue)], 
+                np.argmax(Stress_c_maxlistvalue)] #[Stress, point along span, point along crossection]
+Stress_c_min = [min(Stress_c_minlistvalue), Stress_c_minlistindex[np.argmin(Stress_c_minlistvalue)], np.argmin(Stress_c_minlistvalue)] #[Stress, point along span, point along crossection]
+    
 
     
 #Stress-maxc = 
