@@ -113,6 +113,8 @@ V_max = 34.2                                     #[m/s]       Power estimation. 
 #P_a = 9557.6211097                               #[W]         Power available
 P_a = 10419.6299                                  #[W]         Power available - Frank - power calculations
 
+T_max =  227.9944                                   #[N]        Max thrust from Power available and max speed - Frank 6-6
+
 #CL_mindrag = 0.531736155272                      #[-]         CL @ minimum drag 
 CL_mindrag = 0.9496                                #[-]         CL @ minimum drag - Frank 15-5
 
